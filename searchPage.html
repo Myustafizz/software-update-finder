@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Centered Search with Filter</title>
+
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+
+  <div class="card">
+    <h1 class="title">Software Update Finder</h1>
+
+    <!-- The search input is in the form; buttons are below and use the form attribute -->
+    <form id="searchForm" action="https://www.archive.org/search" method="get" autocomplete="off">
+      <div class="search-bar">
+        <input
+          class="search-input"
+          type="text"
+          name="q"
+          placeholder="Search updates (e.g., Windows 10 22H2, Adobe Reader 24.002)"
+          required
+        />
+      </div>
+
+      <!-- Filter panel sits INSIDE the form so year selections submit too -->
+      <div id="filterPanel" class="filter-panel" aria-hidden="true">
+        <div class="filter-header">Filter by Year (1995–2025)</div>
+        <div id="yearGrid" class="year-grid"><!-- JS will populate --></div>
+        <div class="hint">Tip: You can select multiple years.</div>
+      </div>
+    </form>
+
+    <!-- Buttons under the search bar -->
+    <div class="actions">
+      <!-- Submit button targets the form above via the form attribute -->
+      <button class="btn btn-primary" type="submit" form="searchForm" aria-label="Search">
+        🔍 Search
+      </button>
+      <button id="filterToggle" class="btn btn-outline" type="button" aria-expanded="false" aria-controls="filterPanel">
+        🧰 Filter
+      </button>
+    </div>
+  </div>
+
+    <!-- IMPORTANT: use defer so DOM exists before JS runs -->
+  <script src="script.js" defer></script>
+</body>
+</html>
