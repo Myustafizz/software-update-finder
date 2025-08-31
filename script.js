@@ -38,8 +38,21 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-fetch('https://software-update-backend.onrender.com/api/updates?year=2020&year=2021')
-  .then(res => res.json())
-  .then(data => {
-    console.log(data); // Display updates
-  });
+// --- Fetch updates from backend based on selected years
+function fetchUpdates() {
+  const selectedYears = [...document.querySelectorAll('input[name="year"]:checked')]
+    .map(cb => `year=${cb.value}`)
+    .join('&');
+
+  fetch(`/api/updates?${selectedYears}`)
+    .then(res => res.json())
+    .then(data => {
+      console.log('Updates:', data);
+      // You can display the data in the UI here
+    })
+    .catch(err => console.error('Error fetching updates:', err));
+}
+
+// --- Trigger fetch on Search button click
+document.getElementById('searchButton').addEventListener('click', fetchUpdates);
+
