@@ -37,3 +37,9 @@ window.addEventListener('DOMContentLoaded', () => {
     filterToggle.setAttribute('aria-expanded', 'true');
     }
 });
+
+fetch('https://software-update-backend.onrender.com/api/updates?year=2020&year=2021')
+  .then(res => res.json())
+  .then(data => {
+    console.log(data); // Display updates
+  });
